@@ -6,4 +6,4 @@
   * [扩展-music](fixit-doc/content-management/shortcodes/extended/music/index.zh-cn.md)
   * [扩展-typeit](fixit-doc/content-management/shortcodes/extended/typeit/index.zh-cn.md)
   * [扩展-echarts](fixit-doc/content-management/shortcodes/extended/echarts/index.zh-cn.md)
-* [内容加密](fixit-doc/content-management/encyryption/index.zh-cn.md)
+* [内容加密](fixit-doc/content-management/encryption/index.zh-cn.md)
