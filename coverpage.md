@@ -13,6 +13,6 @@
 - Legacy browser support (IE11+)
 
 [Get Started](guide/index.md)
-[Fixit-Doc](fixit-doc/index.md)
+[Fixit-Doc](fixit-doc/_sidebar.md)
 [Blog](https://geekswg.js.cool/)
 [GitHub](https://gavinblog.github.io/docs/)

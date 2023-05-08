@@ -21,11 +21,11 @@
     window.$docsify = {
         // GENERAL
         // -----------------------------------------------------------------
-        name       : 'docsify-themeable',
+        name       : '毕十三',
         repo       : 'https://gavinblog.github.io/docs/',
         coverpage  : 'coverpage.md',
         homepage   : 'guide/index.md',
-        loadSidebar: 'sidebar.md',
+        loadSidebar: true,
 
         // NAVIGATION
         // -----------------------------------------------------------------
@@ -33,19 +33,42 @@
             '.*?/changelog': 'https://raw.githubusercontent.com/jhildenbiddle/docsify-themeable/master/CHANGELOG.md',
         },
         auto2top   : true,
-        maxLevel   : 3,
-        subMaxLevel: 3,
+        maxLevel   : 6,
+        subMaxLevel: 6,
 
         // PLUGINS
         // -----------------------------------------------------------------
-        ethicalAds: {
+        /**  ethicalAds: { //广告插件
             eaPublisher: 'jhildenbiddle-github-io',
+        },  */
+
+        // 字数统计
+        count: {
+            countable: true,
+            position: "top",
+            margin: "10px",
+            float: "right",
+            fontsize: "0.9em",
+            color: "red",
+            language: "chinese",
+            localization: {
+              words: "",
+              minute: "",
+            },
+            isExpected: true,
         },
+        // 页面右侧toc
+        toc: {
+            tocMaxLevel: 4,
+            target: "h2, h3, h4, h5, h6",
+        },
+  
+
         executeScript: true,
         search: {
             depth      : 3,
             noData     : 'No results!',
-            placeholder: 'Search...'
+            placeholder: '输入关键字搜索...'
         },
         plugins: [
             // Restores initial <title>
@@ -63,7 +86,31 @@
                         titleElm.textContent = newTitle;
                     });
                 }
-            }
+            },
+            function (hook, vm) {
+                hook.beforeEach(function (html) {
+                  if (/githubusercontent\.com/.test(vm.route.file)) {
+                    url = vm.route.file
+                      .replace('raw.githubusercontent.com', 'github.com')
+                      .replace(/\/master/, '/blob/master');
+                  } else if (/jsdelivr\.net/.test(vm.route.file)) {
+                    url = vm.route.file
+                      .replace('cdn.jsdelivr.net/gh', 'github.com')
+                      .replace('@master', '/blob/master');
+                  } else {
+                    url =
+                      'https://github.com/gavinblog/docs/blob/main/docs/' +
+                      vm.route.file;
+                  }
+                  var editHtml = '[:memo: Edit Document](' + url + ')\n';
+                  return (
+                    editHtml +
+                    html +
+                    '\n\n----\n\n' +
+                    '<a href="https://gavinblog.github.io/docs" target="_blank" style="color: inherit; font-weight: normal; text-decoration: none;">Powered by docsify</a>'
+                  );
+                })
+            },
         ]
     };
 </script>
@@ -78,6 +125,10 @@
 <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+<!-- 页面右侧 TOC -->
+<script src="https://cdn.jsdelivr.net/npm/docsify-plugin-toc@1.1.0/dist/docsify-plugin-toc.min.js"></script>
+<!-- 字数统计 -->
+<script src="https://cdn.jsdelivr.net/npm/docsify-count@latest/dist/countable.min.js"></script>
 
 
 </body>
